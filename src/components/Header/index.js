@@ -13,7 +13,7 @@ export default function Header() {
       <CartIconBox>
         <Icon name="shopping-basket" size={24} color="#FFF" />
         <Badge>
-          <ItensNumber>10</ItensNumber>
+          <ItensNumber>0</ItensNumber>
         </Badge>
       </CartIconBox>
     </Navbar>
