@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Image } from 'react-native';
 import api from '../../services/api';
 
 import { Container } from '../../components/Container';
