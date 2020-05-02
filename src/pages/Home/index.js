@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 
 import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 import { Container } from '../../components/Container';
 
@@ -12,7 +13,6 @@ import {
   ProductImage,
   Title,
   Price,
-  AddButtonBox,
   CartIcon,
   ItensNumber,
   AddButton,
@@ -30,7 +30,14 @@ class Home extends Component {
   async componentDidMount() {
     const response = await api.get('/products');
 
-    this.setState({ products: response.data });
+    console.tron.log(formatPrice);
+
+    const data = response.data.map((product) => ({
+      ...product,
+      formattedPrice: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
   }
 
   handleAddProduct = (product) => {
@@ -59,7 +66,7 @@ class Home extends Component {
                 }}
               />
               <Title>{item.title}</Title>
-              <Price>{item.price}</Price>
+              <Price>{item.formattedPrice}</Price>
               <AddButton onPress={() => this.handleAddProduct(item)}>
                 <CartIcon>
                   <Icon name="shopping-basket" size={24} color="#FFF" />
