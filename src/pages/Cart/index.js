@@ -25,7 +25,7 @@ import {
   FinishButtonText,
 } from './styles';
 
-function Cart() {
+function Cart({ dispatch }) {
   const products = [
     {
       id: 1,
@@ -84,7 +84,7 @@ function Cart() {
           <TotalPrice>R$ 1619,10</TotalPrice>
         </Total>
 
-        <FinishButton>
+        <FinishButton onPress={() => dispatch({ type: '@cart/ADD' })}>
           <FinishButtonText>FINALIZAR PEDIDO</FinishButtonText>
         </FinishButton>
       </CartContainer>

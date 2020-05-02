@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
+
 import api from '../../services/api';
 
 import { Container } from '../../components/Container';
@@ -17,7 +19,7 @@ import {
   AddButtonText,
 } from './styles';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,6 +32,15 @@ export default class Home extends Component {
 
     this.setState({ products: response.data });
   }
+
+  handleAddProduct = (product) => {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: '@cart/ADD',
+      product,
+    });
+  };
 
   render() {
     const { products } = this.state;
@@ -49,15 +60,13 @@ export default class Home extends Component {
               />
               <Title>{item.title}</Title>
               <Price>{item.price}</Price>
-              <AddButtonBox>
+              <AddButton onPress={() => this.handleAddProduct(item)}>
                 <CartIcon>
                   <Icon name="shopping-basket" size={24} color="#FFF" />
                   <ItensNumber>0</ItensNumber>
                 </CartIcon>
-                <AddButton>
-                  <AddButtonText>ADICIONAR</AddButtonText>
-                </AddButton>
-              </AddButtonBox>
+                <AddButtonText>ADICIONAR</AddButtonText>
+              </AddButton>
             </Product>
           )}
         />
@@ -65,3 +74,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect()(Home);

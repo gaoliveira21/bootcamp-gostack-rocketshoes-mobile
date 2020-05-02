@@ -34,7 +34,7 @@ export const Price = styled.Text`
   margin-top: auto;
 `;
 
-export const AddButtonBox = styled(RectButton)`
+export const AddButton = styled(RectButton)`
   flex-direction: row;
   margin: 10px 0;
   width: 100%;
@@ -55,13 +55,10 @@ export const ItensNumber = styled.Text`
   font-size: 16px;
 `;
 
-export const AddButton = styled.View`
-  padding: 10px;
-  width: 70%;
-`;
-
 export const AddButtonText = styled.Text`
   text-align: center;
   color: #fff;
   font-size: 16px;
+  padding: 10px;
+  width: 70%;
 `;
