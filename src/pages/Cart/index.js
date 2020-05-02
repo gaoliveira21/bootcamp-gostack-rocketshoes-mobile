@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
 
 import { Container } from '../../components/Container';
 
@@ -24,7 +25,7 @@ import {
   FinishButtonText,
 } from './styles';
 
-export default function Cart() {
+function Cart() {
   const products = [
     {
       id: 1,
@@ -90,3 +91,5 @@ export default function Cart() {
     </Container>
   );
 }
+
+export default connect()(Cart);

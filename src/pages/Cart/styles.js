@@ -11,7 +11,9 @@ export const CartContainer = styled.View`
   flex-wrap: wrap;
 `;
 
-export const CartList = styled.FlatList``;
+export const CartList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})``;
 
 export const Item = styled.View`
   flex-direction: column;
