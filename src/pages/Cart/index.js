@@ -58,7 +58,7 @@ function Cart({ dispatch, cart }) {
                         color="#7159c1"
                       />
 
-                      <Amount editable={false} value="1" />
+                      <Amount editable={false} value={String(item.amount)} />
                       <Icon
                         name="add-circle-outline"
                         size={20}
