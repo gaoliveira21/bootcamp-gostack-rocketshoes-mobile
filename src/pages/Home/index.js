@@ -30,8 +30,6 @@ class Home extends Component {
   async componentDidMount() {
     const response = await api.get('/products');
 
-    console.tron.log(formatPrice);
-
     const data = response.data.map((product) => ({
       ...product,
       formattedPrice: formatPrice(product.price),

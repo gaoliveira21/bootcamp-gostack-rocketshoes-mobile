@@ -115,3 +115,15 @@ export const FinishButtonText = styled.Text`
   font-weight: bold;
   text-align: center;
 `;
+
+export const EmptyCart = styled.View`
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EmptyCartText = styled.Text`
+  font-size: 21px;
+  color: #333;
+  font-weight: bold;
+`;
