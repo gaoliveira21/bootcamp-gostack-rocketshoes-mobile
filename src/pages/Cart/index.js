@@ -1,7 +1,10 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../util/format';
 
 import { Container } from '../../components/Container';
@@ -29,7 +32,7 @@ import {
   EmptyCartText,
 } from './styles';
 
-function Cart({ dispatch, cart, total }) {
+function Cart({ dispatch, cart, total, removeFromCart }) {
   return (
     <Container>
       <CartContainer>
@@ -46,11 +49,13 @@ function Cart({ dispatch, cart, total }) {
                       <Title>{item.title}</Title>
                       <Price>{item.formattedPrice}</Price>
                     </ItemInfo>
-                    <RevemoFromCart
-                      name="delete-forever"
-                      size={24}
-                      color="#7159c1"
-                    />
+                    <TouchableOpacity onPress={() => removeFromCart(item.id)}>
+                      <RevemoFromCart
+                        name="delete-forever"
+                        size={24}
+                        color="#7159c1"
+                      />
+                    </TouchableOpacity>
                   </ItemBody>
                   <ItemFooter>
                     <AmountChange>
@@ -104,4 +109,7 @@ const mapStateToProps = (state) => ({
   ),
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
