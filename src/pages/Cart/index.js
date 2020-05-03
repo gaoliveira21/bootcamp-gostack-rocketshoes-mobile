@@ -29,7 +29,7 @@ import {
   EmptyCartText,
 } from './styles';
 
-function Cart({ dispatch, cart }) {
+function Cart({ dispatch, cart, total }) {
   return (
     <Container>
       <CartContainer>
@@ -74,7 +74,7 @@ function Cart({ dispatch, cart }) {
             />
             <Total>
               <TotalText>TOTAL</TotalText>
-              <TotalPrice>R$ 1619,10</TotalPrice>
+              <TotalPrice>{total}</TotalPrice>
             </Total>
 
             <FinishButton onPress={() => dispatch({ type: '@cart/ADD' })}>
@@ -97,6 +97,11 @@ const mapStateToProps = (state) => ({
     ...product,
     subTotal: formatPrice(product.amount * product.price),
   })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
 export default connect(mapStateToProps)(Cart);
