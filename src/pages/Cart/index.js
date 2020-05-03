@@ -2,6 +2,8 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 
+import { formatPrice } from '../../util/format';
+
 import { Container } from '../../components/Container';
 
 import {
@@ -65,7 +67,7 @@ function Cart({ dispatch, cart }) {
                         color="#7159c1"
                       />
                     </AmountChange>
-                    <SubTotal>{item.price}</SubTotal>
+                    <SubTotal>{item.subTotal}</SubTotal>
                   </ItemFooter>
                 </Item>
               )}
@@ -91,7 +93,10 @@ function Cart({ dispatch, cart }) {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
+  cart: state.cart.map((product) => ({
+    ...product,
+    subTotal: formatPrice(product.amount * product.price),
+  })),
 });
 
 export default connect(mapStateToProps)(Cart);
