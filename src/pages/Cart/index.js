@@ -32,7 +32,15 @@ import {
   EmptyCartText,
 } from './styles';
 
-function Cart({ dispatch, cart, total, removeFromCart }) {
+function Cart({ dispatch, cart, total, removeFromCart, updateAmountRequest }) {
+  function increment({ id, amount }) {
+    updateAmountRequest(id, amount + 1);
+  }
+
+  function decrement({ id, amount }) {
+    updateAmountRequest(id, amount - 1);
+  }
+
   return (
     <Container>
       <CartContainer>
@@ -59,18 +67,21 @@ function Cart({ dispatch, cart, total, removeFromCart }) {
                   </ItemBody>
                   <ItemFooter>
                     <AmountChange>
-                      <Icon
-                        name="remove-circle-outline"
-                        size={20}
-                        color="#7159c1"
-                      />
-
+                      <TouchableOpacity onPress={() => decrement(item)}>
+                        <Icon
+                          name="remove-circle-outline"
+                          size={20}
+                          color="#7159c1"
+                        />
+                      </TouchableOpacity>
                       <Amount editable={false} value={String(item.amount)} />
-                      <Icon
-                        name="add-circle-outline"
-                        size={20}
-                        color="#7159c1"
-                      />
+                      <TouchableOpacity onPress={() => increment(item)}>
+                        <Icon
+                          name="add-circle-outline"
+                          size={20}
+                          color="#7159c1"
+                        />
+                      </TouchableOpacity>
                     </AmountChange>
                     <SubTotal>{item.subTotal}</SubTotal>
                   </ItemFooter>

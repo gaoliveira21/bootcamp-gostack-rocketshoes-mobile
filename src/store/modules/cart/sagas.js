@@ -1,5 +1,5 @@
 import { put, all, takeLatest, select, call } from 'redux-saga/effects';
-
+import { Alert } from 'react-native';
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 import api from '../../../services/api';
 import { formatPrice } from '../../../util/format';
@@ -19,7 +19,7 @@ function* addToCart({ id }) {
   const amount = currentAmount + 1;
 
   if (amount > stockAmount) {
-    console.tron.error('Quantidade selecionada não disponivel em estoque');
+    Alert.alert(null, 'Quantidade solicitada fora de estoque');
     return;
   }
 
@@ -45,7 +45,7 @@ function* updateAmount({ id, amount }) {
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {
-    console.tron.log('Quantidade selecionada não disponivel em estoque');
+    Alert.alert(null, 'Quantidade solicitada fora de estoque');
     return;
   }
 
