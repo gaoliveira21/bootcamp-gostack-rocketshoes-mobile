@@ -93,7 +93,7 @@ function Cart({ dispatch, cart, total, removeFromCart, updateAmountRequest }) {
               <TotalPrice>{total}</TotalPrice>
             </Total>
 
-            <FinishButton onPress={() => dispatch({ type: '@cart/ADD' })}>
+            <FinishButton>
               <FinishButtonText>FINALIZAR PEDIDO</FinishButtonText>
             </FinishButton>
           </>
