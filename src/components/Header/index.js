@@ -1,13 +1,15 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Navbar, CartIconBox, Badge, ItensNumber } from './styles';
 
 import logo from '../../assets/images/Logo.png';
 
-function Header({ navigation, cartSize }) {
+export default function Header({ navigation }) {
+  const cartSize = useSelector((state) => state.cart.length);
+
   return (
     <Navbar>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -24,5 +26,3 @@ function Header({ navigation, cartSize }) {
     </Navbar>
   );
 }
-
-export default connect((state) => ({ cartSize: state.cart.length }))(Header);
